@@ -1,0 +1,15 @@
+# 数据库连接
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/sso?characterEncoding=utf8
+    username: root
+    password: aa
+    driver-class-name: com.mysql.jdbc.Driver
+
+# 端口
+server:
+  port: 8081
+# 日志
+logging:
+  level:
+    root: info
