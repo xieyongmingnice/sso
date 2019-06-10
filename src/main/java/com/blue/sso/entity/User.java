@@ -18,7 +18,7 @@ public class User {
     /**
      * 用户名
      */
-    private String userName;
+    private String username;
     /**
      * 密码
      */
@@ -51,13 +51,13 @@ public class User {
     }
 
     @Basic
-    @Column(name = "user_name")
-    public String getUserName() {
-        return userName;
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Basic
@@ -118,7 +118,7 @@ public class User {
         return userId == user.userId &&
                 regType == user.regType &&
                 isEnable == user.isEnable &&
-                Objects.equals(userName, user.userName) &&
+                Objects.equals(username, user.username) &&
                 Objects.equals(password, user.password) &&
                 Objects.equals(createTime, user.createTime) &&
                 Objects.equals(updateTime, user.updateTime);
@@ -126,6 +126,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, userName, password, regType, isEnable, createTime, updateTime);
+        return Objects.hash(userId, username, password, regType, isEnable, createTime, updateTime);
     }
 }
