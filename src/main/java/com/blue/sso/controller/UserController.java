@@ -12,20 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @description 登录控制器
+ * @description 用户控制器
  * @author orcas
  * @since 2019/6/8
  **/
 @RestController
-public class LoginController {
+public class UserController {
 
-    private static Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    private static ThreadLocal<User> threadLocal = new ThreadLocal<>();
 
     @Autowired
     UserService userService;
 
     @RequestMapping(value = "/signUp",method = RequestMethod.POST)
     public String signUp(User user){
+        userService.findUserByUsername(user.getUsername());
         userService.userSignUp(user);
         return "注册成功";
     }
@@ -38,8 +41,14 @@ public class LoginController {
      */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(HttpServletRequest request, String username, String password){
+        String success = "登录失败";
         logger.info("请求登录~~~~,{}",request);
-        userService.userLogin(username,password);
-        return "登录成功";
+        User user = userService.userLogin(username,password);
+        if (null != user){
+            threadLocal.set(user);
+            success = "登录失败";
+            logger.info("登录成功");
+        }
+        return success;
     }
 }

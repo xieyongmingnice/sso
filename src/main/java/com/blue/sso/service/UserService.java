@@ -12,7 +12,7 @@ public interface UserService {
     /**
      * 用户注册
      * @param user 用户
-     * @return
+     * @return 用户实体
      */
     User userSignUp(User user);
 
@@ -20,9 +20,16 @@ public interface UserService {
      * 用户登录
      * @param username 用户名
      * @param password 密码
-     * @return
+     * @return 用户实体
      */
     User userLogin(String username, String password);
+
+    /**
+     * 通过用户名获取用户对象
+     * @param username 用户名
+     * @return 用户实体
+     */
+    User findUserByUsername(String username);
 
 
 }
