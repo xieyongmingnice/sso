@@ -2,6 +2,7 @@ package com.blue.sso.controller;
 
 import com.blue.sso.entity.User;
 import com.blue.sso.service.UserService;
+import com.blue.sso.vo.ResultVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,11 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(value = "/signUp",method = RequestMethod.POST)
-    public String signUp(User user){
+    public ResultVO<String> signUp(User user){
+        ResultVO<String> resultVO = new ResultVO<>();
         userService.findUserByUsername(user.getUsername());
         userService.userSignUp(user);
-        return "注册成功";
+        return resultVO;
     }
     /**
      * 用户登录
